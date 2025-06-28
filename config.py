@@ -8,9 +8,9 @@ env_var = os.getenv('APP_NAME', '')
 
 
 # database credentials 
-user = os.getenv('user', 'root')
-password = os.getenv('password', '')
-database = os.getenv('database', 'web_app')
+user = os.getenv('user', 'xepkifivur')
+password = os.getenv('password', 'qY0trr$8atp$RZVX')
+database = os.getenv('database', 'hr-growwstacks-database')
 
 # define for email variables
 G_email_from = os.getenv('email_from', 'admin@growwstacks.com')
