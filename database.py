@@ -1,14 +1,33 @@
 # database.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from config import user, password, database
+import os
 
+# Get from Azure environment variables
+user = os.getenv('DB_USER', 'xepkifivur')
+password = os.getenv('DB_PASSWORD', 'qY0trr$8atp$RZVX')
+database = os.getenv('DB_NAME', 'postgres')
+host = os.getenv('DB_HOST', 'hr-growwstacks-server.postgres.database.azure.com')
 
-# Replace with your own MySQL credentials
-DATABASE_URL = f'mysql+pymysql://{user}:{password}@localhost:3306/{database}'
+# PostgreSQL connection URL
+DATABASE_URL = f'postgresql://{user}:{password}@{host}:5432/{database}?sslmode=require'
 
-engine = create_engine(DATABASE_URL)
+print(f"🔗 Connecting to: postgresql://{user}:***@{host}:5432/{database}")
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,
+    echo=False
+)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
 Base = declarative_base()
-Base.metadata.create_all(engine)
+
+def init_db():
+    try:
+        Base.metadata.create_all(engine)
+        print("✅ Database tables created successfully")
+    except Exception as e:
+        print(f"❌ Database connection failed: {e}")
+        raise e
