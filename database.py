@@ -2,8 +2,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
-from database import Base, engine
-
 # Get database credentials from environment variables
 user = os.getenv('DB_USER', 'mfexyzjecv')
 password = os.getenv('DB_PASSWORD', 'Utkarsh@1234')
@@ -23,7 +21,6 @@ engine = create_engine(
     pool_recycle=300,
     echo=False
 )
-Base.metadata.create_all(bind=engine)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
