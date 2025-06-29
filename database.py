@@ -4,16 +4,18 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
 # Get database credentials from environment variables
-user = os.getenv('DB_USER', 'xepkifivur')
-password = os.getenv('DB_PASSWORD', 'qY0trr$8atp$RZVX')
-database = os.getenv('DB_NAME', 'postgres')
-host = os.getenv('DB_HOST', 'hr-growwstacks-server.postgres.database.azure.com')
+user = os.getenv('DB_USER', 'mfexyzjecv')
+password = os.getenv('DB_PASSWORD', 'Utkarsh@1234')
+database = os.getenv('DB_NAME', 'gfydwceabn')
+host = os.getenv('DB_HOST', 'hr-growwstacks-server.mysql.database.azure.com')
 
-# PostgreSQL connection URL
-DATABASE_URL = f'postgresql://{user}:{password}@{host}:5432/{database}?sslmode=require'
+# ✅ MySQL Flexible Server connection string
+DATABASE_URL = f'mysql+pymysql://{user}:{password}@{host}:3306/{database}'
 
-print(f"🔗 Connecting to: postgresql://{user}:***@{host}:5432/{database}")
+# ✅ Fixed print statement
+print(f"🔗 Connecting to: mysql://{user}:***@{host}:3306/{database}")
 
+# Create SQLAlchemy engine
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
