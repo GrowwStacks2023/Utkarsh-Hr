@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-# Get from Azure environment variables
+# Get database credentials from environment variables
 user = os.getenv('DB_USER', 'xepkifivur')
 password = os.getenv('DB_PASSWORD', 'qY0trr$8atp$RZVX')
 database = os.getenv('DB_NAME', 'postgres')
