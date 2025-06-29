@@ -6,7 +6,7 @@ import os
 user = os.getenv('DB_USER', 'mfexyzjecv')
 password = os.getenv('DB_PASSWORD', 'Utkarsh@1234')
 database = os.getenv('DB_NAME', 'gfydwceabn')
-host = os.getenv('DB_HOST', 'hr-growwstacks-server.mysql.database.azure.com')
+host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
 
 # ✅ MySQL Flexible Server connection string
 DATABASE_URL = f'mysql+pymysql://{user}:{password}@{host}:3306/{database}'
