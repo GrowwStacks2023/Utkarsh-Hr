@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
 import sys
+from db_initializer import init_db  # <- Correct place to call init_db
 
 try:
     from database import init_db  # ✅ Import init_db function
