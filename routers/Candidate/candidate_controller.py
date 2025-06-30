@@ -11,7 +11,7 @@ import os
 from routers.Candidate.candidate_model import Candidate, CandidateRead
 import openai
 import pdfplumber
-from config import base_url, op_api_key, assessment_url, G_email_from, G_smtp_username, G_smtp_password, vapi_key, vapi_assistant_id
+from config import base_url, op_api_key, assessment_url, G_email_from, G_smtp_username, G_smtp_password, op_api_project_id, vapi_key, vapi_assistant_id
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -31,7 +31,7 @@ def get_db():
 
 # Set API Key directly (Not recommended — see note below)
 openai.api_key = op_api_key
-
+print("print api key", openai.api_key)
 @router.post("/apply/{company_id}")
 async def apply_job(
     company_id: str,
@@ -108,8 +108,24 @@ Format:
 Respond in JSON format only.
 """
 
+        print("print api key in call : ", openai.api_key)
+
+
+        client = openai.OpenAI(
+         api_key=op_api_key,         
+         project=op_api_project_id         
+        )
+
+        # response = client.chat.completions.create(
+        #     model="gpt-4",
+        #     messages=[
+        #         {"role": "user", "content": "Hello!"}
+        #     ]
+        # )
+
+
         # ✅ OpenAI API call (use correct method)
-        response = openai.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             response_format={"type": "json_object"},  # JSON-enforced response
             messages=[
