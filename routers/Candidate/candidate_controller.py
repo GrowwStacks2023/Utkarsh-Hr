@@ -303,33 +303,46 @@ def get_candidate_info(candidate_id: int, db: Session = Depends(get_db)):
 
 
 def send_selection_email(email: str, name: str):
-    subject = "You're Selected for the Next Round!"
+    subject = "Congratulations - Moving to Next Round"
     body = f"""
     Hi {name},
 
-    Congratulations! Based on our initial screening, you have been selected to move forward to the next round.
+    Congratulations!
 
-    Hr Assistant Will Contact You Soon. Please Wait for the Call.
+    Based on our initial screening, you have been selected to move forward to the next round of our recruitment process.
 
-    Good luck!
-    """
+    Our HR Assistant will contact you shortly with further details. Please keep your phone and email available.
 
-    send_email(email, subject, body)
+    We wish you the best of luck in the next stage!
 
-def send_rejection_email(email: str, name: str):
-    subject = "Application Update - Thank You for Applying"
-    body = f"""
-    Hi {name},
-
-    Thank you for applying. After careful consideration, we regret to inform you that your application was not selected at this time.
-
-    We wish you the best in your job search and future endeavors.
-
-    Regards,
+    Best regards,  
     HR Team
     """
 
     send_email(email, subject, body)
+
+
+def send_rejection_email(email: str, name: str):
+    subject = "Application Update - Thank You for Applying"
+    body = f"""
+    Dear {name},
+
+    Thank you for your interest in joining our team and for taking the time to participate in our recruitment process.
+
+    After careful review, we have decided to move forward with other candidates whose experience more closely aligns with our current needs.
+
+    We truly appreciate your time and effort, and we were impressed with your qualifications and thoughtful responses.
+
+    We encourage you to apply for future opportunities that match your skills. Your profile will be kept on file, and we may reach out if a suitable role becomes available.
+
+    Wishing you all the best in your career journey.
+
+    Best regards,  
+    HR Team
+    """
+
+    send_email(email, subject, body)
+
 
 def send_email(to_email: str, subject: str, body: str):
     from_email = G_email_from
