@@ -1,4 +1,4 @@
-import PyMySQL
+import pymysql
 import ssl
 import os
 
