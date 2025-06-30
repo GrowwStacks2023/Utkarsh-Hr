@@ -5,7 +5,7 @@ import os
 from urllib.parse import quote_plus 
 
 
-CA_CERT_PATH = os.path.abspath("BaltimoreCyberTrustRoot.crt.pem")
+# CA_CERT_PATH = os.path.abspath("BaltimoreCyberTrustRoot.crt.pem")
 
 # Create SSL context (stronger, works on Windows too)
 ssl_context = {
