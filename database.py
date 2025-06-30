@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-
 # Create SSL context (stronger, works on Windows too)
 ssl_context = {
    "ssl_mode": "VERIFY_IDENTITY" ,
