@@ -12,11 +12,6 @@ ssl_context = {
     
 }
 # Get database credentials from environment variables
-# user = os.getenv('DB_USER', 'mfexyzjecv')
-# password = os.getenv('DB_PASSWORD', 'shubham_10')
-# database = os.getenv('DB_NAME', 'hr-database')
-# host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
-
 # PostgreSQL connection URL
 DATABASE_URL = f'mysql+pymysql://{user}:{password}@{host}:3306/{database}'
 
