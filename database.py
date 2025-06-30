@@ -3,9 +3,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
+CA_CERT_PATH = os.path.abspath("BaltimoreCyberTrustRoot.crt.pem")
+
+
+# Create SSL context (stronger, works on Windows too)
+ssl_context = {
+   "ssl_mode": "VERIFY_IDENTITY" ,
+    
+}
 # Get database credentials from environment variables
 user = os.getenv('DB_USER', 'mfexyzjecv')
-password = os.getenv('DB_PASSWORD', 'Utkarsh@1234')
+password = os.getenv('DB_PASSWORD', 'shubham_10')
 database = os.getenv('DB_NAME', 'hr-database')
 host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
 
@@ -20,7 +28,8 @@ engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
     pool_recycle=300,
-    echo=False
+    echo=False,
+    connect_args={"ssl": ssl_context}
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
