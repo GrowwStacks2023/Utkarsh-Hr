@@ -25,4 +25,5 @@ vapi_key = os.getenv('VAPI_KEY', '0126f44e-2158-4894-a63b-ce12c885741e')
 vapi_assistant_id = os.getenv('VAPI_ASSISTANT_ID', 'fd1d82a1-7685-4dce-8608-216be650e349')
 
 # API key
-op_api_key = os.getenv('OPENAI_API_KEY', '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')
+op_api_key = os.getenv('OPENAI_API_KEY', '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
+ ')
