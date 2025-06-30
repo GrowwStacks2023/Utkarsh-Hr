@@ -1,26 +1,35 @@
 # database.py
-import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+import os
 
-# Azure-compatible SSL settings
-ssl_args = {
-    "ssl": {
-        "ssl_ca": "/etc/ssl/certs/ca-certificates.crt"
-    }
+CA_CERT_PATH = os.path.abspath("BaltimoreCyberTrustRoot.crt.pem")
+
+
+# Create SSL context (stronger, works on Windows too)
+ssl_context = {
+   "ssl_mode": "VERIFY_IDENTITY" ,
+    
 }
-
+# Get database credentials from environment variables
 user = os.getenv('DB_USER', 'mfexyzjecv')
 password = os.getenv('DB_PASSWORD', 'shubham_10')
-host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
 database = os.getenv('DB_NAME', 'hr-database')
+host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
 
+# PostgreSQL connection URL
 DATABASE_URL = f'mysql+pymysql://{user}:{password}@{host}:3306/{database}'
+
+
+
+print(f"🔗 Connecting to: mysql://{user}:***@{host}:5432/{database}")
 
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
-    connect_args=ssl_args  # 🟢 This is the fix
+    pool_recycle=300,
+    echo=False,
+    connect_args={"ssl": ssl_context}
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
