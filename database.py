@@ -3,8 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-CA_CERT_PATH = os.path.abspath("BaltimoreCyberTrustRoot.crt.pem")
-
 
 # Create SSL context (stronger, works on Windows too)
 ssl_context = {
