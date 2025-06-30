@@ -20,7 +20,8 @@ database = os.getenv('DB_NAME', 'hr-database')
 host = os.getenv('DB_HOST', 'gfydwceabn.mysql.database.azure.com')
 
 
-encoded_password = quote_plus(password)
+# encoded_password = quote_plus(password)
+encoded_password = password.replace("@", "%40")
 
 DATABASE_URL = f'mysql+pymysql://{user}:{encoded_password}@{host}:3306/{database}'
 
