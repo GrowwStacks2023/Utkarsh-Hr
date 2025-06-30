@@ -20,7 +20,6 @@ G_smtp_password = os.getenv('SMTP_PASSWORD', 'waae baft ztcu txgq')
 
 # ✅ Updated URLs for new app
 base_url = os.getenv('BASE_URL', 'https://testgroww-embjdjbpawf4hpat.canadacentral-01.azurewebsites.net')
-assessment_url = os.getenv('ASSESSMENT_URL', 'http://localhost:5173/admin/assesmentform')
 vapi_key = os.getenv('VAPI_KEY', '0126f44e-2158-4894-a63b-ce12c885741e')
 vapi_assistant_id = os.getenv('VAPI_ASSISTANT_ID', 'fd1d82a1-7685-4dce-8608-216be650e349')
 
