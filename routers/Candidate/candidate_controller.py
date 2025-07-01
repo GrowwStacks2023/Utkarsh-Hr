@@ -385,3 +385,14 @@ def update_screening(
     db.commit()
     db.refresh(candidate)
     return candidate
+
+
+@router.put("/candidate/{candidate_id}/status")
+def update_status(candidate_id: int, request: dict, db: Session = Depends(get_db)):
+    candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
+    if not candidate:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    candidate.status = request["status"]
+    db.commit()
+    db.refresh(candidate)
+    return {"message": "Status updated", "candidate": candidate}
