@@ -275,7 +275,7 @@ def list_all_candidates(company_id: int, db: Session = Depends(get_db)):
             "resume_screen_score": candidate.resume_screen_score,
             "screening_result": candidate.screening_result,
             "screening_reason_result": candidate.screening_reason_result,
-            "status": candidate.status
+            "status": candidate.status,
         })
 
     return candidates
@@ -298,7 +298,19 @@ def get_candidate_info(candidate_id: int, db: Session = Depends(get_db)):
         "name": candidate.name,
         "email": candidate.email,
         "phone": candidate.phone,
-        "resume_url": resume_url
+        "resume_url": resume_url,
+        "qualification": candidate.qualification,
+        "designation": candidate.designation,
+        "department": candidate.department,
+        "job_id": candidate.job_id, 
+        "resume_screen_score": candidate.resume_screen_score,
+        "screening_result": candidate.screening_result,
+        "screening_reason_result": candidate.screening_reason_result,
+        "status": candidate.status,
+        "created_at": candidate.created_at,
+        "hr_assistant_screen_score": candidate.hr_assistant_screen_score,
+        "hr_assistant_result": candidate.hr_assistant_result,
+        "hr_assistant_reason_result": candidate.hr_assistant_reason_result,
     }
 
 
